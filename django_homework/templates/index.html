@@ -16,25 +16,23 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>ФИО</th>
-                  <th>ТиМП</th>
-                  <th>ЭиС</th>
-                  <th>Философия</th>
-                  <th>Иностранный язык</th>
-                  <th>Физическая культура</th>
+                  <th>Студент</th>
+                  {% for subject in subjects %}
+                    <th>{{subject.name}}</th>
+                  {% endfor %}
                   <th>Средний балл</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {% for student in students_statistics %}
+                    {% for student in students %}
                         <tr>
                             <th scope="row">{{student.id}}</th>
-                            <td>{{student.fio}}</td>
-                            <td>{{student.timp}}</td>
-                            <td>{{student.eis}}</td>
-                            <td>{{student.philosophy}}</td>
-                            <td>{{student.english}}</td>
-                            <td>{{student.sport}}</td>
+                            <td>{{student.surname}} {{student.name}}</td>
+                            {% for statistic in student_subjects_statistics %}
+                                {% if student.id == statistic.student.id %}
+                                    <td>{{statistic.value}}</td>
+                                {% endif %}
+                            {% endfor %}
                             <td>{{student.average}}</td>
                         </tr>
                     {% endfor %}

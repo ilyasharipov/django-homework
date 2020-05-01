@@ -10,6 +10,9 @@ class Student(models.Model):
     def __repr__(self):
         return f'Student(name={self.name}, surname={self.surname})'
 
+    def average(self):
+        pass
+
 class Subject(models.Model):
     name = models.TextField()
 
