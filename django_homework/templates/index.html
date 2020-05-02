@@ -28,18 +28,26 @@
                         <tr>
                             <th scope="row">{{student.id}}</th>
                             <td>{{student.surname}} {{student.name}}</td>
-                            {% for statistic in student_subjects_statistics %}
-                                {% if student.id == statistic.student.id %}
-                                    <td>{{statistic.value}}</td>
+                            {% for student_score in student_subjects_scores %}
+                                {% if student.id == student_score.student.id %}
+                                    <td>{{student_score.value}}</td>
                                 {% endif %}
                             {% endfor %}
-                            <td>{{student.average}}</td>
+                            <td>{{student.average_mark}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <h4>Отличники:{{excellent_students}}</h4>
-            <h4>Отчислить:{{bad_students}}</h4>
+            <h4>Отличники:
+                {% for excellent_student in excellent_students %}
+                    {{excellent_student}},
+                {% endfor %}
+            </h4>
+            <h4>Отчислить:
+                {% for bad_student in bad_students %}
+                    {{bad_student}},
+                {% endfor %}
+            </h4>
         </div>
 	</body>
 </html>
